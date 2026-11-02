@@ -11,11 +11,24 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 // Allow requests from the React frontend
-app.use(
-  cors({
-    origin: process.env.FRONTEND_URL || "http://localhost:5174",
-  })
-);
+const cors = require("cors");
+
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://smart-study-planner-dccgd90k7-agentx4.vercel.app"
+];
+
+app.use(cors({
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"]
+}));
 
 // Parse incoming JSON data
 app.use(express.json());
