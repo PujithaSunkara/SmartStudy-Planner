@@ -1,7 +1,7 @@
 
 import { useEffect, useState } from "react";
 import "./App.css";
-const API_URL = "http://localhost:5000/api/study";
+const API_URL = "https://smartstudy-planner.onrender.com/api/study";
 
 function App() {
   const [subjects, setSubjects] = useState("");
