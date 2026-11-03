@@ -10,8 +10,6 @@ const geminiRoutes = require("./routes/geminiRoutes");
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Allow requests from the React frontend
-const cors = require("cors");
 
 const allowedOrigins = [
   "http://localhost:5173",
